@@ -21,10 +21,6 @@ public class EnchantmentMixin {
     public void getName(int level, CallbackInfoReturnable<Text> cir) {
         Enchantment enchant = (Enchantment)(Object) this;
         String equipment = enchant.type.name().toLowerCase();
-
-        if (Utils.isIn(ConventionalEnchantmentTags.ENTITY_DEFENSE_ENHANCEMENT, enchant)) {
-            equipment = "defense";
-        }
         if (Utils.isIn(ConventionalEnchantmentTags.ENTITY_MOVEMENT_ENHANCEMENT, enchant)) {
             equipment = "movement";
         }
@@ -36,6 +32,9 @@ public class EnchantmentMixin {
         }
         if (Utils.isIn(ConventionalEnchantmentTags.WEAPON_DAMAGE_ENHANCEMENT, enchant)) {
             equipment = "damage";
+        }
+        if (Utils.isIn(ConventionalEnchantmentTags.ENTITY_DEFENSE_ENHANCEMENT, enchant)) {
+            equipment = "defense";
         }
 
         MutableText mutableText = Text.translatable("enchantment.enchantmentdisplay." + equipment).formatted(Formatting.WHITE);
