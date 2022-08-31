@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "enchantmentdisplay",
+  "version": "${version}",
+
+  "name": "Enchantment Display",
+  "description": "Enchantments display their max level and what kind of item they go on",
+  "authors": [
+    "A5TR0spud"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/enchantmentdisplay/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.astrospud.enchantmentdisplay.EnchantmentDisplay"
+    ]
+  },
+  "mixins": [
+    "enchantmentdisplay.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "fabric": "*",
+    "minecraft": "~1.19",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
