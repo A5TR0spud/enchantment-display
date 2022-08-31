@@ -4,8 +4,6 @@
   "package": "net.astrospud.enchantmentdisplay.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-  ],
-  "client": [
     "EnchantmentMixin"
   ],
   "injectors": {

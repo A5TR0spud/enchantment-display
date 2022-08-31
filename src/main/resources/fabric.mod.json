@@ -9,21 +9,23 @@
     "A5TR0spud"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/A5TR0spud",
+    "sources": "https://github.com/A5TR0spud/enchantment-display"
   },
 
   "license": "CC0-1.0",
   "icon": "assets/enchantmentdisplay/icon.png",
-
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
-    "main": [
+    "client": [
       "net.astrospud.enchantmentdisplay.EnchantmentDisplay"
     ]
   },
   "mixins": [
-    "enchantmentdisplay.mixins.json"
+    {
+      "config": "enchantmentdisplay.mixins.json",
+      "environment": "client"
+    }
   ],
 
   "depends": {
