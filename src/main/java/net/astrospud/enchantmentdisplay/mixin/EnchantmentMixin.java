@@ -49,7 +49,7 @@ public class EnchantmentMixin {
 
         mutableText.append(" ").append(enchantText);
 
-        if (level != 1 || enchant.getMaxLevel() != 1) {
+        if (level > 1 || enchant.getMaxLevel() > 1) {
             int maxLevel = enchant.getMaxLevel();
             int minLevel = enchant.getMinLevel();
 
