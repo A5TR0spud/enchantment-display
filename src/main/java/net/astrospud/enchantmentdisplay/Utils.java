@@ -1,9 +1,16 @@
 package net.astrospud.enchantmentdisplay;
 
+import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalEnchantmentTags;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.tag.TagKey;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 
 import javax.annotation.Nullable;
@@ -16,35 +23,16 @@ public class Utils {
         return MathHelper.clamp(gotoMin + (gotoMax - gotoMin) * ((valueToMap-ogMin)/(ogMax-ogMin)), gotoMin, gotoMax);
     }
 
-    public static <T> boolean isIn(TagKey<T> tagKey, T entry) {
-        return isIn(null, tagKey, entry);
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <T> boolean isIn(@Nullable DynamicRegistryManager registryManager, TagKey<T> tagKey, T entry) {
-        Optional<? extends Registry<?>> maybeRegistry;
-        Objects.requireNonNull(tagKey);
-        Objects.requireNonNull(entry);
-
-        if (registryManager != null) {
-            maybeRegistry = registryManager.getOptional(tagKey.registry());
-        } else {
-            maybeRegistry = Registry.REGISTRIES.getOrEmpty(tagKey.registry().getValue());
-        }
-
-        if (maybeRegistry.isPresent()) {
-            if (tagKey.isOf(maybeRegistry.get().getKey())) {
-                Registry<T> registry = (Registry<T>) maybeRegistry.get();
-
-                Optional<RegistryKey<T>> maybeKey = registry.getKey(entry);
-
-                // Check synced tag
-                if (maybeKey.isPresent()) {
-                    return registry.entryOf(maybeKey.get()).isIn(tagKey);
+    public static boolean isIn(TagKey<Enchantment> tag, Enchantment enchantment){
+        if (enchantment != null) {
+            if (Registry.ENCHANTMENT.getKey(enchantment).isPresent()) {
+                RegistryKey<Enchantment> i = Registry.ENCHANTMENT.getKey(enchantment).get();
+                if (Registry.ENCHANTMENT.getEntry(i).isPresent()) {
+                    RegistryEntry<Enchantment> entry = Registry.ENCHANTMENT.getEntry(i).get();
+                    return entry.isIn(tag);
                 }
             }
         }
-
         return false;
     }
 }
