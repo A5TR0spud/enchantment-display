@@ -1,6 +1,7 @@
 package net.astrospud.enchantmentdisplay.mixin;
 
 import net.astrospud.enchantmentdisplay.Utils;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalEnchantmentTags;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
@@ -19,7 +20,23 @@ public class EnchantmentMixin {
     @Inject(at = @At("HEAD"), method = "getName", cancellable = true)
     public void getName(int level, CallbackInfoReturnable<Text> cir) {
         Enchantment enchant = (Enchantment)(Object) this;
-        String equipment = enchant.type.toString().toLowerCase();
+        String equipment = enchant.type.name().toLowerCase();
+
+        if (Utils.isIn(ConventionalEnchantmentTags.ENTITY_DEFENSE_ENHANCEMENT, enchant)) {
+            equipment = "defense";
+        }
+        if (Utils.isIn(ConventionalEnchantmentTags.ENTITY_MOVEMENT_ENHANCEMENT, enchant)) {
+            equipment = "movement";
+        }
+        if (Utils.isIn(ConventionalEnchantmentTags.INCREASES_BLOCK_DROPS, enchant)) {
+            equipment = "fortune";
+        }
+        if (Utils.isIn(ConventionalEnchantmentTags.INCREASES_ENTITY_DROPS, enchant)) {
+            equipment = "looting";
+        }
+        if (Utils.isIn(ConventionalEnchantmentTags.WEAPON_DAMAGE_ENHANCEMENT, enchant)) {
+            equipment = "damage";
+        }
 
         MutableText mutableText = Text.translatable("enchantment.enchantmentdisplay." + equipment).formatted(Formatting.WHITE);
 
