@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "enchantmentdisplay",
+  "id": "enchanted_icons",
   "version": "${version}",
 
-  "name": "Enchantment Display",
+  "name": "Enchanted Icons",
   "description": "Enchantments display their max level and what kind of item they go on",
   "authors": [
     "A5TR0spud"
@@ -14,16 +14,16 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/enchantmentdisplay/icon.png",
+  "icon": "assets/enchanted_icons/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "net.astrospud.enchantmentdisplay.EnchantmentDisplay"
+      "net.astrospud.enchanted_icons.EnchantmentDisplay"
     ]
   },
   "mixins": [
     {
-      "config": "enchantmentdisplay.mixins.json",
+      "config": "enchanted_icons.mixins.json",
       "environment": "client"
     }
   ],

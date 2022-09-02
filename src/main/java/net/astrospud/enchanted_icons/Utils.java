@@ -1,4 +1,4 @@
-package net.astrospud.enchantmentdisplay;
+package net.astrospud.enchanted_icons;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.tag.TagKey;
@@ -16,28 +16,25 @@ public class Utils {
     }
 
     public static boolean isIn(TagKey<Enchantment> tag, Enchantment enchantment){
-        EnchantmentDisplay.LOGGER.info("isIn has been called!");
         RegistryEntry<Enchantment> entry = getEnchantmentRegistryKey(enchantment);
-        return entry.isIn(tag);
+        EnchantmentDisplay.LOGGER.info("tag: " + tag);
+        if (entry != null) {
+            return entry.isIn(tag);
+        }
+        return false;
     }
 
     public static RegistryEntry<Enchantment> getEnchantmentRegistryKey(Enchantment enchantment){
-        EnchantmentDisplay.LOGGER.info("getEnchantmentRegistryKey has been called!");
         RegistryKey<Enchantment> key;
-        EnchantmentDisplay.LOGGER.info("key value init");
         Optional<RegistryKey<Enchantment>> optional = Registry.ENCHANTMENT.getKey(enchantment);
-        EnchantmentDisplay.LOGGER.info("got key");
         if(optional.isPresent()) {
-            EnchantmentDisplay.LOGGER.info("is present");
             key = optional.get();
         }
         else {
-            EnchantmentDisplay.LOGGER.info("else");
             return null;
         }
-        EnchantmentDisplay.LOGGER.info("if statement over");
         Optional<RegistryEntry<Enchantment>> optional2 = Registry.ENCHANTMENT.getEntry(key);
-        EnchantmentDisplay.LOGGER.info("got entry");
+        EnchantmentDisplay.LOGGER.info("enchantment entry: " + optional2.get());
         return optional2.orElse(null);
     }
 }

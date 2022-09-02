@@ -1,6 +1,7 @@
-package net.astrospud.enchantmentdisplay.mixin;
+package net.astrospud.enchanted_icons.mixin;
 
-import net.astrospud.enchantmentdisplay.Utils;
+import net.astrospud.enchanted_icons.EnchantmentDisplay;
+import net.astrospud.enchanted_icons.Utils;
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalEnchantmentTags;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.text.MutableText;
@@ -37,7 +38,7 @@ public class EnchantmentMixin {
             equipment = "defense";
         }
 
-        MutableText mutableText = Text.translatable("enchantment.enchantmentdisplay." + equipment).formatted(Formatting.WHITE);
+        MutableText mutableText = Text.translatable("icon." + EnchantmentDisplay.MOD_ID + "." + equipment).formatted(Formatting.WHITE);
 
         MutableText enchantText = Text.translatable(enchant.getTranslationKey());
         if (enchant.isCursed()) {
